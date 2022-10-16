@@ -1,0 +1,21 @@
+#container {
+    margin: 0 auto;
+    background-color: #ccc;
+    border-radius: 55px;
+    width: 600px;
+    height: 850px;
+    padding-top: 40px;
+}
+
+#board {
+    margin: auto;
+    display: block;
+}
+
+#controlsList {
+    margin-left: 30px;
+}
+
+#score {
+    text-align: center;
+}
