@@ -5,8 +5,9 @@ import controls from "./controls.js";
 
 // init board
 let board = document.getElementById('board');
-let boardContext = board.getContext('2d');
+let boardContext = board.getContext('2d', { alpha: false });
 let scoreDisplay = document.getElementById('score');
+let css = getComputedStyle(document.documentElement);
 
 // game states
 const gameState = {
@@ -25,7 +26,7 @@ let
 
 window.onload = () => {
     start();
-    setInterval(show, 1000/20);
+    setInterval(loop, 1000/20);
 }
 
 function start() {
@@ -35,34 +36,31 @@ function start() {
     score = 0;
 }
 
-function show() {
-    if(state == gameState.PLAYING) {
-        update();
-        draw();
-    }
-    else if (state == gameState.PAUSED) {
-        boardStateMsg('Pause', 'Press "' + controls.pause + '" to continue');
-    }
-    else if (state == gameState.GAME_OVER) {
-        boardStateMsg('GAME OVER', 'Press "' + controls.retry + '" to play again');
-    }
-    else {
-        draw();
-        boardStateMsg('Snake JS', 'Press "' + controls.start + '" to start');
-    }
+function loop() {
+    draw();
+
+    switch (state) {
+        case gameState.PLAYING:
+            return update();
+        case gameState.PAUSED:
+            return boardStateMsg('Pause', 'Press "' + controls.pause + '" to continue');    
+        case gameState.GAME_OVER:
+            return boardStateMsg('Game Over', 'Press "' + controls.retry + '" to play again');
+        case gameState.START:
+            return boardStateMsg('Snake JS', 'Press "' + controls.start + '" to start');
+      }
 }
 
 function boardStateMsg(msg, subMsg) {
     boardContext.textAlign = 'center';
     boardContext.fillStyle = 'white';
-    boardContext.font = '32px Silkscreen';
+    boardContext.font = '32px Paytone One, sans-serif';
     boardContext.fillText(msg, board.width / 2, board.height / 2.4);
-    boardContext.font = '20px Silkscreen';
+    boardContext.font = '20px Paytone One, sans-serif';
     boardContext.fillText(subMsg, board.width / 2, board.height / 1.85);
 }
 
 function update() {
-    boardContext.clearRect(0, 0, board.width, board.height)
     let successMove = snake.move(board);
     if (snake.eat(food)) {
         score++;
@@ -75,16 +73,16 @@ function update() {
 }
 
 function draw() {
-    rectFill(0, 0, board.width, board.height, 'black');
+    rectFill(0, 0, board.width, board.height, css.getPropertyValue('--color-3'));
     snake.tail.forEach((e, i) => {
         let isHead = i == snake.tail.length - 1;
         rectFill(
             e.x + 0.75, e.y + 0.75, snake.size - 2.5, snake.size - 2.5,
-            state == gameState.GAME_OVER ? (isHead ? 'darkred' : 'red') : (isHead ? 'darkgreen' : 'lime')
+            state == gameState.GAME_OVER ? (isHead ? 'darkred' : 'red') : (isHead ? css.getPropertyValue('--color-2') : css.getPropertyValue('--color-2'))
         );
     });
     rectFill(food.x, food.y, food.size, food.size, 'yellow');
-    scoreDisplay.textContent = `Score : ${score}`;
+    scoreDisplay.textContent = score;
 }
 
 function rectFill(x, y, width, height, color) {
@@ -93,9 +91,6 @@ function rectFill(x, y, width, height, color) {
 }
 
 window.addEventListener('keydown', (e) => {
-    //if(state == gameState.PLAYING) {
-    //    snake.handleKey(e.key);
-    
     if (e.key === controls.retry && state === gameState.GAME_OVER) {
         start();
     }
@@ -108,4 +103,4 @@ window.addEventListener('keydown', (e) => {
     else if (state === gameState.PLAYING){
         snake.handleKey(e.key);
     }
-})
+});
