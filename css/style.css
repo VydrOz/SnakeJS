@@ -1,21 +1,41 @@
+:root {
+    --color-1: #E5D9B6;
+    --color-2: #285430;
+    --color-3: #5F8D4E;
+    --color-4: #A4BE7B;
+}
+
+html {
+    background: var(--color-1);
+}
+
 #container {
     margin: 0 auto;
-    background-color: #ccc;
-    border-radius: 55px;
     width: 600px;
-    height: 850px;
-    padding-top: 40px;
+    height: 700px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #board {
-    margin: auto;
-    display: block;
+    position: relative;
+    border: solid black;
+}
+
+#score, #controlsList {
+    height: 50px;
+    font-family: 'Paytone One', sans-serif;
+    /* text-align: center; */
 }
 
 #controlsList {
-    margin-left: 30px;
+    /* padding-top: 10px; */
 }
 
 #score {
-    text-align: center;
+    font-size: 24px;
+    /*padding-bottom: 10px;*/
 }

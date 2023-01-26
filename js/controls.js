@@ -6,5 +6,5 @@ export default
     down: 'ArrowDown',
     pause: 'Escape',
     start: 'Enter',
-    retry: 'r',
+    retry: 'r', 
 }
