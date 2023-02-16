@@ -43,21 +43,20 @@ function loop() {
         case gameState.PLAYING:
             return update();
         case gameState.PAUSED:
-            return boardStateMsg('Pause', 'Press "' + controls.pause + '" to continue');    
+            return boardStateMsg('PAUSE');    
         case gameState.GAME_OVER:
-            return boardStateMsg('Game Over', 'Press "' + controls.retry + '" to play again');
+            return boardStateMsg('GAME OVER');
         case gameState.START:
-            return boardStateMsg('Snake JS', 'Press "' + controls.start + '" to start');
+            return boardStateMsg('START');
       }
 }
 
 function boardStateMsg(msg, subMsg) {
     boardContext.textAlign = 'center';
     boardContext.fillStyle = 'white';
-    boardContext.font = '32px Paytone One, sans-serif';
-    boardContext.fillText(msg, board.width / 2, board.height / 2.4);
-    boardContext.font = '20px Paytone One, sans-serif';
-    boardContext.fillText(subMsg, board.width / 2, board.height / 1.85);
+    boardContext.font = '50px Rubik Mono One, sans-serif';
+    boardContext.fillText(msg, board.width / 2, board.height / 2);
+
 }
 
 function update() {

@@ -7,6 +7,7 @@
 
 html {
     background: var(--color-1);
+    left: 0;
 }
 
 #container {
@@ -22,20 +23,104 @@ html {
 
 #board {
     position: relative;
-    border: solid black;
+    border: solid 5px black;
+    box-shadow: 5px 5px black;
 }
 
 #score, #controlsList {
     height: 50px;
-    font-family: 'Paytone One', sans-serif;
+    font-family: 'Rubik Mono One', sans-serif;
     /* text-align: center; */
-}
-
-#controlsList {
-    /* padding-top: 10px; */
 }
 
 #score {
     font-size: 24px;
     /*padding-bottom: 10px;*/
+}
+
+/*----------------*/
+/*    COMMANDS    */
+/*----------------*/
+
+kbd {
+    border: 3px solid var(--color-2);
+    box-shadow: 3px 3px var(--color-3);
+    font-size: 1.2em; 
+    line-height: 1.2em; 
+    display: inline-block;
+    font-weight: 600;
+    letter-spacing: .05em; 
+    padding: 3px 5px;
+    white-space: nowrap;
+}
+
+/*--------------*/
+/*    BANNER    */
+/*--------------*/
+/*
+.banner-section {
+    border: 5px solid black;
+    position: relative;
+    min-height: 27px;
+    font-size: 25px;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+.banner-section, .banner-section * {
+    overflow: hidden;
+}
+
+.banner {
+    white-space: nowrap;
+}
+
+.banner-div {
+    position: absolute;
+    animation: move-left-to-right linear 20s infinite;
+}
+
+/* use this one to move from left to right direction */
+/*@keyframes move-left-to-right {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* use this one to move from right to left direction */
+/*@keyframes move-right-to-left {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+*/
+
+.bar {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    font-size: 20px;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+  
+.bar_content {
+    /*display: block;  Important to give the content a width */
+
+    width: 100%;
+    transform: translateX(-100%); /* Animation start out of the screen */
+
+    /* Add the animation */
+    animation: move 30s linear infinite /* infinite make reapeat the animation indefinitely */;
+}
+
+/* Create the animation */
+@keyframes move {
+    to { transform: translateX(100%); }
 }
