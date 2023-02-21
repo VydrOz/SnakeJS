@@ -26,7 +26,7 @@ let
 
 window.onload = () => {
     start();
-    setInterval(loop, 1000/25);
+    setInterval(loop, 1000/22);
 }
 
 function start() {
@@ -53,7 +53,7 @@ function loop() {
 
 function boardStateMsg(msg, subMsg) {
     boardContext.textAlign = 'center';
-    boardContext.fillStyle = 'white';
+    boardContext.fillStyle = css.getPropertyValue('--board-color-state-info');
     boardContext.font = '50px Rubik Mono One, sans-serif';
     boardContext.fillText(msg, board.width / 2, board.height / 2);
 
@@ -72,15 +72,14 @@ function update() {
 }
 
 function draw() {
-    rectFill(0, 0, board.width, board.height, css.getPropertyValue('--color-3'));
+    rectFill(0, 0, board.width, board.height, css.getPropertyValue('--global-color-3'));
     snake.tail.forEach((e, i) => {
-        let isHead = i == snake.tail.length - 1;
         rectFill(
             e.x , e.y , snake.size, snake.size,
-            state == gameState.GAME_OVER ? (isHead ? 'darkred' : 'red') : (isHead ? css.getPropertyValue('--color-2') : css.getPropertyValue('--color-2'))
+            state == gameState.GAME_OVER ? css.getPropertyValue('--snake-color-dead') : css.getPropertyValue('--snake-color-alive')
         );
     });
-    rectFill(food.x, food.y, food.size, food.size, 'yellow');
+    rectFill(food.x, food.y, food.size, food.size, css.getPropertyValue('--food-color'));
     scoreDisplay.textContent = score;
 }
 

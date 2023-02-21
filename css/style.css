@@ -1,12 +1,35 @@
 :root {
-    --color-1: #E5D9B6;
-    --color-2: #285430;
-    --color-3: #5F8D4E;
-    --color-4: #A4BE7B;
+    --global-color-1: #E5D9B6;
+    --global-color-2: #B6C2E5;
+    --global-color-3: #B6E5C2;
+    --global-color-4: #E5B6DA;
+
+    --marquee-color-font: #000000;
+    --marquee-color-border: #000000;
+
+    --board-color-state-info: #000000;
+    --board-color-border: #000000;
+    --board-color-shadow: #000000;
+
+    --score-color-font: #000000;
+
+    --kbd-color-background : #cae7d1a2;
+    --kbd-color-border: #000000;
+    --kbd-color-shadow: #000000;
+
+    --snake-color-alive: #CD73B8;
+    --snake-color-dead: #CD73B880;
+
+    --food-color: #567eea;
+}
+
+@font-face {
+    font-family: 'Rubik Mono One';
+    src: url(/fonts/RubikMonoOne-Regular.ttf);
 }
 
 html {
-    background: var(--color-1);
+    background: var(--global-color-1);
 }
 
 body {
@@ -27,8 +50,9 @@ body {
 
 #board {
     position: relative;
-    border: solid 5px black;
-    box-shadow: 5px 5px black;
+    border: solid 5px var(--board-color-border);
+    box-shadow: 5px 5px var(--board-color-shadow);
+    margin: 7px 0px 10px 0px;
 }
 
 #score, #controlsList {
@@ -39,6 +63,7 @@ body {
 
 #score {
     font-size: 24px;
+    color: var(--score-color-font);
     /*padding-bottom: 10px;*/
 }
 
@@ -47,8 +72,9 @@ body {
 /*----------------*/
 
 kbd {
-    border: 3px solid var(--color-2);
-    box-shadow: 3px 3px var(--color-3);
+    background-color: var(--kbd-color-background);
+    border: 3px solid var(--kbd-color-border);
+    box-shadow: 3px 3px var(--kbd-color-shadow);
     font-size: 1.2em; 
     line-height: 1.2em; 
     display: inline-block;
@@ -65,33 +91,38 @@ kbd {
 .marquee {
     font-family: 'Rubik Mono One', sans-serif;
     font-size: 27px;
-    border-top: 4px solid black;
-    border-bottom: 4px solid black;
+    color: var(--marquee-color-font);
+    border-top: 4px solid var(--marquee-color-border);
+    border-bottom: 4px solid var(--marquee-color-border);
     margin: 15px 0px 15px 0px;
-    --gap: 1rem;
+    --duration: 60s;
+    --gap: 3rem;
     display: flex;
     overflow: hidden;
     user-select: none;
     gap: var(--gap);
 }
-  
-.marquee__content {
+
+.marquee__group {
     flex-shrink: 0;
     display: flex;
+    align-items: center;
     justify-content: space-around;
-    min-width: 100%;
     gap: var(--gap);
-    animation: scroll 10s linear infinite;
-    animation-direction: reverse;
-    list-style-type: none;
+    min-width: 100%;
+    animation: scroll 15s linear infinite reverse;
+    animation-delay: calc(var(--duration) / -2);
+}
+
+.marquee__group > p {
     margin: 6px 0px 6px 0px;
 }
 
 @keyframes scroll {
-    from {
-      transform: translateX(0);
+    0% {
+        transform: translateX(0);
     }
-    to {
-      transform: translateX(calc(-100% - var(--gap)));
+    100% {
+        transform: translateX(calc(-100% - var(--gap)));
     }
 }

@@ -1,28 +1,24 @@
 <html>
     <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./css/style.css">
         <title>Snake JS</title>
     </head>
     <body>
         <div class="marquee">
-            <ul class="marquee__content">
-              <li>SNAKE JS</li>
-              <li>SNAKE JS</li>
-              <li>SNAKE JS</li>
-              <li>SNAKE JS</li>
-            </ul>
-            <!-- Mirrors the content above -->
-            <ul class="marquee__content" aria-hidden="true">
-              <li>SNAKE JS</li>
-              <li>SNAKE JS</li>
-              <li>SNAKE JS</li>
-              <li>SNAKE JS</li>
-            </ul>
+            <div class="marquee__group">
+              <p>SNAKE JS</p>
+              <p aria-hidden="true">SNAKE JS</p>
+              <p aria-hidden="true">SNAKE JS</p>
+              <p aria-hidden="true">SNAKE JS</p>
+            </div>
+            <div aria-hidden="true" class="marquee__group">
+              <p>SNAKE JS</p>
+              <p>SNAKE JS</p>
+              <p>SNAKE JS</p>
+              <p>SNAKE JS</p>
+            </div>
         </div>
+
         <div id="container">
             <div id="score">0</div>
             <canvas id="board" height="600" width="600"></canvas>
