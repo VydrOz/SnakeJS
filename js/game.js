@@ -26,7 +26,7 @@ let
 
 window.onload = () => {
     start();
-    setInterval(loop, 1000/20);
+    setInterval(loop, 1000/25);
 }
 
 function start() {
@@ -76,7 +76,7 @@ function draw() {
     snake.tail.forEach((e, i) => {
         let isHead = i == snake.tail.length - 1;
         rectFill(
-            e.x + 0.75, e.y + 0.75, snake.size - 2.5, snake.size - 2.5,
+            e.x , e.y , snake.size, snake.size,
             state == gameState.GAME_OVER ? (isHead ? 'darkred' : 'red') : (isHead ? css.getPropertyValue('--color-2') : css.getPropertyValue('--color-2'))
         );
     });
