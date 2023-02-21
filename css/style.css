@@ -7,7 +7,11 @@
 
 html {
     background: var(--color-1);
-    left: 0;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
 }
 
 #container {
@@ -54,73 +58,40 @@ kbd {
     white-space: nowrap;
 }
 
-/*--------------*/
-/*    BANNER    */
-/*--------------*/
-/*
-.banner-section {
-    border: 5px solid black;
-    position: relative;
-    min-height: 27px;
-    font-size: 25px;
-    font-family: 'Rubik Mono One', sans-serif;
-}
+/*---------------*/
+/*    MARQUEE    */
+/*---------------*/
 
-.banner-section, .banner-section * {
+.marquee {
+    font-family: 'Rubik Mono One', sans-serif;
+    font-size: 27px;
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
+    margin: 15px 0px 15px 0px;
+    --gap: 1rem;
+    display: flex;
     overflow: hidden;
-}
-
-.banner {
-    white-space: nowrap;
-}
-
-.banner-div {
-    position: absolute;
-    animation: move-left-to-right linear 20s infinite;
-}
-
-/* use this one to move from left to right direction */
-/*@keyframes move-left-to-right {
-    from {
-        transform: translateX(-50%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-/* use this one to move from right to left direction */
-/*@keyframes move-right-to-left {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
-    }
-}
-*/
-
-.bar {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 5px 0;
-    font-size: 20px;
-    font-family: 'Rubik Mono One', sans-serif;
+    user-select: none;
+    gap: var(--gap);
 }
   
-.bar_content {
-    /*display: block;  Important to give the content a width */
-
-    width: 100%;
-    transform: translateX(-100%); /* Animation start out of the screen */
-
-    /* Add the animation */
-    animation: move 30s linear infinite /* infinite make reapeat the animation indefinitely */;
+.marquee__content {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    min-width: 100%;
+    gap: var(--gap);
+    animation: scroll 10s linear infinite;
+    animation-direction: reverse;
+    list-style-type: none;
+    margin: 6px 0px 6px 0px;
 }
 
-/* Create the animation */
-@keyframes move {
-    to { transform: translateX(100%); }
+@keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
 }

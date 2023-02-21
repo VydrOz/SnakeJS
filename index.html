@@ -7,20 +7,22 @@
         <link rel="stylesheet" href="./css/style.css">
         <title>Snake JS</title>
     </head>
-<!--
-    <div class="banner-section">
-        <div class="banner-div">
-            <div class="banner">SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull; 
-                SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull; SNAKE JS &bull;</div>
-        </div>
-    </div>
--->
     <body>
-        <div class="bar">
-            <div class="bar_content">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-            </div>
-          </div>
+        <div class="marquee">
+            <ul class="marquee__content">
+              <li>SNAKE JS</li>
+              <li>SNAKE JS</li>
+              <li>SNAKE JS</li>
+              <li>SNAKE JS</li>
+            </ul>
+            <!-- Mirrors the content above -->
+            <ul class="marquee__content" aria-hidden="true">
+              <li>SNAKE JS</li>
+              <li>SNAKE JS</li>
+              <li>SNAKE JS</li>
+              <li>SNAKE JS</li>
+            </ul>
+        </div>
         <div id="container">
             <div id="score">0</div>
             <canvas id="board" height="600" width="600"></canvas>
