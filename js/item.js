@@ -1,4 +1,4 @@
-export default class Food {
+export default class Item {
     constructor(width, height, size) {
         this.size = size;
         this.w = width;

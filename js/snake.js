@@ -55,8 +55,8 @@ export default class Snake {
         }
     }
 
-    eat(food) {
-        return (food.x == this.head.x && food.y == this.head.y);
+    pickup(item) {
+        return (item.x == this.head.x && item.y == this.head.y);
     }
 
     grow() {

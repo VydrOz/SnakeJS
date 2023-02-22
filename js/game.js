@@ -1,6 +1,7 @@
 // Import
 import Snake from "./snake.js"
-import Food from "./food.js"
+import Item from "./item.js"
+import Sfx from "./sfx.js"
 import controls from "./controls.js";
 
 // init board
@@ -17,22 +18,25 @@ const gameState = {
 	GAME_OVER: 3,
 }
 
-// init variable
-let 
-    state, score,
-    snake = new Snake(10, 10, 10),
-    food = new Food(board.width, board.height, 10);
+// audio files
+const sfxItemPickup = new Sfx('./sounds/sfx_coin_double7.wav', 0.1);
+const sfxDamageHit = new Sfx('./sounds/sfx_damage_hit2.wav', 0.1);
 
+// init game variables
+let state;
+let score;
+let snake = new Snake(10, 10, 10);
+let item = new Item(board.width, board.height, 10);
 
 window.onload = () => {
     start();
-    setInterval(loop, 1000/22);
+    setInterval(loop, 1000/21);
 }
 
 function start() {
     state = gameState.START;
     snake.respawn(10, 10);
-    food.respawn(snake.tail);
+    item.respawn(snake.tail);
     score = 0;
 }
 
@@ -61,12 +65,14 @@ function boardStateMsg(msg, subMsg) {
 
 function update() {
     let successMove = snake.move(board);
-    if (snake.eat(food)) {
+    if (snake.pickup(item)) {
         score++;
         snake.grow();
-        food.respawn(snake.tail);
+        item.respawn(snake.tail);
+        sfxItemPickup.play();
     }
     else if (!successMove) {
+        sfxDamageHit.play();
         state = gameState.GAME_OVER;
     }
 }
@@ -79,7 +85,7 @@ function draw() {
             state == gameState.GAME_OVER ? css.getPropertyValue('--snake-color-dead') : css.getPropertyValue('--snake-color-alive')
         );
     });
-    rectFill(food.x, food.y, food.size, food.size, css.getPropertyValue('--food-color'));
+    rectFill(item.x, item.y, item.size, item.size, css.getPropertyValue('--item-color'));
     scoreDisplay.textContent = score;
 }
 
