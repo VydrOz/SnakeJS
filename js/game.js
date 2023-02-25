@@ -1,12 +1,13 @@
 // Import
 import Snake from "./snake.js"
-import Food from "./food.js"
+import Item from "./item.js"
+import Sfx from "./sfx.js"
 import controls from "./controls.js";
 
 // init board
 let board = document.getElementById('board');
-let boardContext = board.getContext('2d');
-let scoreDisplay = document.getElementById('score');
+let boardContext = board.getContext('2d', { alpha: false });
+let css = getComputedStyle(document.documentElement);
 
 // game states
 const gameState = {
@@ -16,75 +17,85 @@ const gameState = {
 	GAME_OVER: 3,
 }
 
-// init variable
-let 
-    state, score,
-    snake = new Snake(10, 10, 10),
-    food = new Food(board.width, board.height, 10);
+// audio files
+const sfxItemPickup = new Sfx('./sounds/sfx_coin_double7.wav', 0.1);
+const sfxDamageHit = new Sfx('./sounds/sfx_damage_hit2.wav', 0.1);
 
+// init game variables
+let state;
+let score;
+let snake = new Snake(10, 10, 10);
+let item = new Item(board.width, board.height, 10);
 
 window.onload = () => {
     start();
-    setInterval(show, 1000/20);
+    setInterval(loop, 1000/21);
 }
 
 function start() {
     state = gameState.START;
     snake.respawn(10, 10);
-    food.respawn(snake.tail);
+    item.respawn(snake.tail);
     score = 0;
+    showScore();
 }
 
-function show() {
-    if(state == gameState.PLAYING) {
-        update();
-        draw();
-    }
-    else if (state == gameState.PAUSED) {
-        boardStateMsg('Pause', 'Press "' + controls.pause + '" to continue');
-    }
-    else if (state == gameState.GAME_OVER) {
-        boardStateMsg('GAME OVER', 'Press "' + controls.retry + '" to play again');
-    }
-    else {
-        draw();
-        boardStateMsg('Snake JS', 'Press "' + controls.start + '" to start');
-    }
+function loop() {
+    draw();
+    switch (state) {
+        case gameState.PLAYING:
+            return update();
+        case gameState.PAUSED:
+            return showGameState('PAUSE');    
+        case gameState.GAME_OVER:
+            return showGameState('GAME OVER');
+        case gameState.START:
+            return showGameState('START');
+      }
 }
 
-function boardStateMsg(msg, subMsg) {
+function showGameState(msg) {
     boardContext.textAlign = 'center';
-    boardContext.fillStyle = 'white';
-    boardContext.font = '32px Silkscreen';
-    boardContext.fillText(msg, board.width / 2, board.height / 2.4);
-    boardContext.font = '20px Silkscreen';
-    boardContext.fillText(subMsg, board.width / 2, board.height / 1.85);
+    boardContext.fillStyle = css.getPropertyValue('--board-color-state-info');
+    boardContext.font = '50px Rubik Mono One, sans-serif';
+    boardContext.fillText(msg, board.width / 2, board.height / 2);
+}
+
+function showScore() {
+    boardContext.textAlign = 'center';
+    boardContext.fillStyle = css.getPropertyValue('--score-color-font');
+    boardContext.font = '200px Rubik Mono One, sans-serif';
+    boardContext.fillText(score.toString().padStart(3, '0'), board.width / 2, board.height / 1.7);
 }
 
 function update() {
-    boardContext.clearRect(0, 0, board.width, board.height)
     let successMove = snake.move(board);
-    if (snake.eat(food)) {
+    
+    if (snake.pickup(item)) {
         score++;
         snake.grow();
-        food.respawn(snake.tail);
+        item.respawn(snake.tail);
+        sfxItemPickup.play();
     }
     else if (!successMove) {
+        sfxDamageHit.play();
         state = gameState.GAME_OVER;
     }
 }
 
 function draw() {
-    rectFill(0, 0, board.width, board.height, 'black');
+    // background
+    rectFill(0, 0, board.width, board.height, css.getPropertyValue('--global-color-sub'));
+    // score
+    showScore();
+    // snake
     snake.tail.forEach((e, i) => {
-        let isHead = i == snake.tail.length - 1;
         rectFill(
-            e.x + 0.75, e.y + 0.75, snake.size - 2.5, snake.size - 2.5,
-            state == gameState.GAME_OVER ? (isHead ? 'darkred' : 'red') : (isHead ? 'darkgreen' : 'lime')
+            e.x , e.y , snake.size, snake.size,
+            state == gameState.GAME_OVER ? css.getPropertyValue('--snake-color-dead') : css.getPropertyValue('--snake-color-alive')
         );
     });
-    rectFill(food.x, food.y, food.size, food.size, 'yellow');
-    scoreDisplay.textContent = `Score : ${score}`;
+    rectFill(item.x, item.y, item.size, item.size, css.getPropertyValue('--item-color'));
 }
 
 function rectFill(x, y, width, height, color) {
@@ -93,9 +104,6 @@ function rectFill(x, y, width, height, color) {
 }
 
 window.addEventListener('keydown', (e) => {
-    //if(state == gameState.PLAYING) {
-    //    snake.handleKey(e.key);
-    
     if (e.key === controls.retry && state === gameState.GAME_OVER) {
         start();
     }
@@ -108,4 +116,4 @@ window.addEventListener('keydown', (e) => {
     else if (state === gameState.PLAYING){
         snake.handleKey(e.key);
     }
-})
+});
