@@ -26,12 +26,12 @@
 
 @font-face {
     font-family: 'Rubik Mono One';
-    src: url(/fonts/RubikMonoOne-Regular.ttf);
+    src: url(./fonts/RubikMonoOne-Regular.ttf);
 }
 
 @font-face {
     font-family: 'Neutra Text Bold';
-    src: url(/fonts/NeutraTextBold.otf);
+    src: url(./fonts/NeutraTextBold.otf);
 }
 
 html {
