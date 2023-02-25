@@ -2,8 +2,11 @@
     --global-color-main: #E5D9B6;
     --global-color-sub: #B6E5C2;
 
-    --marquee-color-font: #000000;
     --marquee-color-border: #000000;
+
+    --logo-color-js: #567eea;
+    --logo-color-snake: #CD73B8;
+    --logo-color-font-shadow: #000000;
 
     --board-color-state-info: #000000;
     --board-color-border: #000000;
@@ -24,6 +27,11 @@
 @font-face {
     font-family: 'Rubik Mono One';
     src: url(/fonts/RubikMonoOne-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Neutra Text Bold';
+    src: url(/fonts/NeutraTextBold.otf);
 }
 
 html {
@@ -48,6 +56,19 @@ body {
     justify-content: center;
 }
 
+#container > h1 {
+    font-family: 'Neutra Text Bold', sans-serif;
+    font-size: 76px;
+    color:var(--logo-color-js);
+    text-shadow: 3px 3px var(--logo-color-font-shadow);
+    user-select: none;
+}
+
+#container > h1 > span {
+    color:var(--logo-color-snake);
+    padding-right: 8px;
+}
+
 #board {
     position: relative;
     border: solid 5px var(--board-color-border);
@@ -69,56 +90,13 @@ kbd {
     background-color: var(--kbd-color-background);
     border: 3px solid var(--kbd-color-border);
     box-shadow: 3px 3px var(--kbd-color-shadow);
-    font-size: 1.2em; 
-    line-height: 1.2em; 
+    font-size: 1.2em;
+    line-height: 1.2em;
     display: inline-block;
     font-weight: 600;
-    letter-spacing: .05em; 
+    letter-spacing: .05em;
     padding: 3px 5px;
     white-space: nowrap;
     margin-right: 10px;
     margin-left: 16px;
-}
-
-/*---------------*/
-/*    MARQUEE    */
-/*---------------*/
-
-.marquee {
-    font-family: 'Rubik Mono One', sans-serif;
-    font-size: 27px;
-    color: var(--marquee-color-font);
-    border-top: 4px solid var(--marquee-color-border);
-    border-bottom: 4px solid var(--marquee-color-border);
-    margin: 15px 0px 15px 0px;
-    --duration: 60s;
-    --gap: 3rem;
-    display: flex;
-    overflow: hidden;
-    user-select: none;
-    gap: var(--gap);
-}
-
-.marquee__group {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: var(--gap);
-    min-width: 100%;
-    animation: scroll var(--duration) linear infinite reverse;
-    animation-delay: calc(var(--duration) / -2);
-}
-
-.marquee__group > p {
-    margin: 6px 0px 6px 0px;
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(calc(-100% - var(--gap)));
-    }
 }
