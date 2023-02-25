@@ -37,7 +37,7 @@ function start() {
     snake.respawn(10, 10);
     item.respawn(snake.tail);
     score = 0;
-    boardScoreMsg();
+    showScore();
 }
 
 function loop() {
@@ -46,22 +46,22 @@ function loop() {
         case gameState.PLAYING:
             return update();
         case gameState.PAUSED:
-            return boardStateMsg('PAUSE');    
+            return showGameState('PAUSE');    
         case gameState.GAME_OVER:
-            return boardStateMsg('GAME OVER');
+            return showGameState('GAME OVER');
         case gameState.START:
-            return boardStateMsg('START');
+            return showGameState('START');
       }
 }
 
-function boardStateMsg(msg, subMsg) {
+function showGameState(msg) {
     boardContext.textAlign = 'center';
     boardContext.fillStyle = css.getPropertyValue('--board-color-state-info');
     boardContext.font = '50px Rubik Mono One, sans-serif';
     boardContext.fillText(msg, board.width / 2, board.height / 2);
 }
 
-function boardScoreMsg() {
+function showScore() {
     boardContext.textAlign = 'center';
     boardContext.fillStyle = css.getPropertyValue('--score-color-font');
     boardContext.font = '200px Rubik Mono One, sans-serif';
@@ -84,11 +84,11 @@ function update() {
 }
 
 function draw() {
-    //background
-    rectFill(0, 0, board.width, board.height, css.getPropertyValue('--global-color-3'));
-    //score
-    boardScoreMsg();
-    //snake
+    // background
+    rectFill(0, 0, board.width, board.height, css.getPropertyValue('--global-color-sub'));
+    // score
+    showScore();
+    // snake
     snake.tail.forEach((e, i) => {
         rectFill(
             e.x , e.y , snake.size, snake.size,
