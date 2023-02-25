@@ -59,6 +59,7 @@ body {
     height: 50px;
     font-family: 'Rubik Mono One', sans-serif;
     align-self: center;
+    user-select: none;
 }
 
 /*----------------*/
