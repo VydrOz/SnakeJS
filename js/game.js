@@ -7,7 +7,6 @@ import controls from "./controls.js";
 // init board
 let board = document.getElementById('board');
 let boardContext = board.getContext('2d', { alpha: false });
-let scoreDisplay = document.getElementById('score');
 let css = getComputedStyle(document.documentElement);
 
 // game states
@@ -38,11 +37,11 @@ function start() {
     snake.respawn(10, 10);
     item.respawn(snake.tail);
     score = 0;
+    boardScoreMsg();
 }
 
 function loop() {
     draw();
-
     switch (state) {
         case gameState.PLAYING:
             return update();
@@ -60,11 +59,18 @@ function boardStateMsg(msg, subMsg) {
     boardContext.fillStyle = css.getPropertyValue('--board-color-state-info');
     boardContext.font = '50px Rubik Mono One, sans-serif';
     boardContext.fillText(msg, board.width / 2, board.height / 2);
+}
 
+function boardScoreMsg() {
+    boardContext.textAlign = 'center';
+    boardContext.fillStyle = css.getPropertyValue('--score-color-font');
+    boardContext.font = '200px Rubik Mono One, sans-serif';
+    boardContext.fillText(score.toString().padStart(3, '0'), board.width / 2, board.height / 1.7);
 }
 
 function update() {
     let successMove = snake.move(board);
+    
     if (snake.pickup(item)) {
         score++;
         snake.grow();
@@ -78,7 +84,11 @@ function update() {
 }
 
 function draw() {
+    //background
     rectFill(0, 0, board.width, board.height, css.getPropertyValue('--global-color-3'));
+    //score
+    boardScoreMsg();
+    //snake
     snake.tail.forEach((e, i) => {
         rectFill(
             e.x , e.y , snake.size, snake.size,
@@ -86,7 +96,6 @@ function draw() {
         );
     });
     rectFill(item.x, item.y, item.size, item.size, css.getPropertyValue('--item-color'));
-    scoreDisplay.textContent = score;
 }
 
 function rectFill(x, y, width, height, color) {

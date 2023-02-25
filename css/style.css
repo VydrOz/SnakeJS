@@ -11,7 +11,7 @@
     --board-color-border: #000000;
     --board-color-shadow: #000000;
 
-    --score-color-font: #000000;
+    --score-color-font: #00000012;
 
     --kbd-color-background : #cae7d1a2;
     --kbd-color-border: #000000;
@@ -55,16 +55,10 @@ body {
     margin: 7px 0px 10px 0px;
 }
 
-#score, #controlsList {
+#controlsList {
     height: 50px;
     font-family: 'Rubik Mono One', sans-serif;
-    /* text-align: center; */
-}
-
-#score {
-    font-size: 24px;
-    color: var(--score-color-font);
-    /*padding-bottom: 10px;*/
+    align-self: center;
 }
 
 /*----------------*/
