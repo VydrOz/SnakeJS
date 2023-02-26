@@ -8,6 +8,8 @@ What better way to practice and have fun than coding a "snake game"?! So... that
 
 **SnakeJS** is a basic snake game with a unique design. I'm definitely not a UI/UX designer but I like the end result, so i expect you like too.
 
+[Start playing 🐍](https://vydroz.github.io/SnakeJS/)
+
 ## Preview
 
 🔨 soon . . .
