@@ -2,7 +2,7 @@
 
 Note : *I have kept the original file names*
 
-#### [OpenGameArt](https://opengameart.org)
+## [OpenGameArt](https://opengameart.org)
 
 Sounds are licensed under [CC0/public](https://creativecommons.org/publicdomain/zero/1.0/) domain.
 
@@ -10,7 +10,7 @@ Sounds are licensed under [CC0/public](https://creativecommons.org/publicdomain/
 	* sfx_coin_double7.wav
     * sfx_damage_hit2.wav
 
-#### [The Sounds Resource](https://www.sounds-resource.com)
+## [The Sounds Resource](https://www.sounds-resource.com)
 
 It lists sounds (no music) from video games, wich are therefore copyrighted and not licensed by the website. 
 The sounds can however be used for non-commercial purposes, like this completely free game I developed.
