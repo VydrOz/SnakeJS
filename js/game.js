@@ -27,10 +27,10 @@ let score;
 let snake = new Snake(10, 10, 10);
 let item = new Item(board.width, board.height, 10);
 
-window.onload = () => {
+window.addEventListener('load', () => {
     start();
     setInterval(loop, 1000/21);
-}
+})
 
 function start() {
     state = gameState.START;

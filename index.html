@@ -2,11 +2,15 @@
     <head>
         <link rel="stylesheet" href="./css/style.css">
         <title>SnakeJS</title>
-        <link rel="icon" type="image/x-icon" href="images/SnakeJS_logo.png">
+        <link rel="icon" type="image/x-icon" href="images/SnakeJS_icon.png">
     </head>
     <body>
         <div id="container">
-            <h1><span class="snake">Snake</span>JS</h1>
+            <div class="logo" >
+                <img id="snake_svg" src="images/Snake.svg" alt="snake" height="40"/>
+                <img id="js_svg" src="images/JS.svg" alt="JS" height="40"/>
+            </div>
+            <!--<h1><span class="snake">Snake</span>JS</h1>-->
             <canvas id="board" height="600" width="600"></canvas>
             <p id="controlsList" style="white-space:pre-line">
                 <kbd>Arrows</kbd>Move<kbd>Enter</kbd>PLAY<kbd>Esc</kbd>PAUSE<kbd>R</kbd>RETRY
@@ -14,5 +18,6 @@
         </div>
         
         <script type="module" src="js/game.js"></script>
+        <script type="module" src="js/miscellaneous.js"></script>
     </body>
 </html>
