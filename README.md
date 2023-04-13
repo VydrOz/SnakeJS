@@ -12,4 +12,4 @@ What better way to practice and have fun than coding a "snake game"?! So... that
 
 ## Preview
 
-🔨 soon . . .
+![firefox_eyMcpBERG4](https://user-images.githubusercontent.com/61025448/231876683-96252453-0929-4c8a-995a-a4af13f4995e.gif)
