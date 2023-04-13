@@ -20,9 +20,8 @@ This game include `1` easter egg !
 
 <details>
 <summary>#1 - Spoiler</summary>
-<br>
 
-If you click on the "Snake" logo, it will animate and make a call sound.
-This sound refers to the _Codec_ sound in the game "[_Metal Gear Solid_](https://en.wikipedia.org/wiki/Metal_Gear)", in which the main charater is "_Solid **Snake**_".
+> If you click on the "Snake" logo, it will animate and make a call sound.
+> This sound refers to the _Codec_ sound in the game "[_Metal Gear Solid_](https://en.wikipedia.org/wiki/Metal_Gear)", in which the main charater is "_Solid **Snake**_".
 
 </details>
