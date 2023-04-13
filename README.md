@@ -13,3 +13,16 @@ What better way to practice and have fun than coding a "snake game"?! So... that
 ## Preview
 
 ![firefox_eyMcpBERG4](https://user-images.githubusercontent.com/61025448/231876683-96252453-0929-4c8a-995a-a4af13f4995e.gif)
+
+## Extras
+
+This game include `1` easter egg ! 
+
+<details>
+<summary>#1 - Spoiler</summary>
+<br>
+
+If you click on the "Snake" logo, it will animate and make a call sound.
+This sound refers to the _Codec_ sound in the game "[_Metal Gear Solid_](https://en.wikipedia.org/wiki/Metal_Gear)", in which the main charater is "_Solid **Snake**_".
+
+</details>
